@@ -1,0 +1,6 @@
+{
+  "name": "Trợ lý Văn bản Pháp luật và Quy định RAG",
+  "description": "Hệ thống hỗ trợ tra cứu, quản lý và chatbot tư vấn văn bản quy chế dựa trên RAG tích hợp Google Drive và Gemini API.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
