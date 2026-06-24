@@ -1,9 +1,10 @@
 {
-  "projectId": "gen-lang-client-0721513855",
-  "appId": "1:54964505283:web:658281a71123bdafc2f076",
-  "apiKey": "AIzaSyCvo_rZfEFD8we8P81EbfCNK34cD_0x9IU",
-  "authDomain": "gen-lang-client-0721513855.firebaseapp.com",
-  "storageBucket": "gen-lang-client-0721513855.firebasestorage.app",
-  "messagingSenderId": "54964505283",
+  "projectId": "tvpt-pvantho",
+  "appId": "1:1068737583982:web:fc6f1d98d11c87f4dcbf7f",
+  "apiKey": "AIzaSyBr2-eiWSBTh5MeFMW-pBNpW5vlNzfe0wM",
+  "authDomain": "tvpt-pvantho.firebaseapp.com",
+  "firestoreDatabaseId": "ai-studio-bad3c259-7451-4cca-b48d-12e10f0dc19d",
+  "storageBucket": "tvpt-pvantho.firebasestorage.app",
+  "messagingSenderId": "1068737583982",
   "measurementId": ""
 }
