@@ -1,7 +1,35 @@
-import 'dotenv/config';
 import express, { Request, Response, NextFunction } from 'express';
 import path from 'path';
 import fs from 'fs';
+import dotenv from 'dotenv';
+
+// Try to load .env from different possible locations
+const possibleEnvPaths = [
+  path.resolve(process.cwd(), '.env'),
+  path.resolve(__dirname, '.env'),
+  path.resolve(__dirname, '../.env')
+];
+
+let envLoaded = false;
+for (const envPath of possibleEnvPaths) {
+  if (fs.existsSync(envPath)) {
+    dotenv.config({ path: envPath });
+    console.log(`[Config] Loaded .env from: ${envPath}`);
+    envLoaded = true;
+    break;
+  }
+}
+
+if (!envLoaded) {
+  // Fallback to default dotenv loading
+  dotenv.config();
+  console.log('[Config] Loaded default .env or using system env');
+}
+
+// Print configured environment status for debugging
+const hasGeminiKey = !!process.env.GEMINI_API_KEY;
+console.log(`[Config] GEMINI_API_KEY status: ${hasGeminiKey ? `CONFIGURED (ends with ...${process.env.GEMINI_API_KEY!.slice(-5)})` : 'NOT CONFIGURED'}`);
+
 import multer from 'multer';
 import { createServer as createViteServer } from 'vite';
 import { GoogleGenAI } from '@google/genai';
@@ -16,6 +44,7 @@ const app = express();
 // Default to 3000 in AI Studio (to keep dev server accessible), but default to 3003 on user's Ubuntu server.
 const isAIStudio = !!process.env.APP_URL || !!process.env.DISABLE_HMR || (process.env.NODE_ENV !== 'production' && !process.env.PM2);
 const PORT = Number(process.env.PORT) || (isAIStudio ? 3000 : 3003);
+console.log(`[Config] Active Port calculated as: ${PORT} (isAIStudio: ${isAIStudio})`);
 
 // Configure JSON parser and URL-encoded parsers
 app.use(express.json({ limit: '50mb' }));
