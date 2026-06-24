@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express, { Request, Response, NextFunction } from 'express';
 import path from 'path';
 import fs from 'fs';
@@ -12,7 +13,9 @@ import * as XLSX from 'xlsx';
 import { DocumentFile, CitationSource } from './src/types';
 
 const app = express();
-const PORT = Number(process.env.PORT) || 3000;
+// Default to 3000 in AI Studio (to keep dev server accessible), but default to 3003 on user's Ubuntu server.
+const isAIStudio = !!process.env.APP_URL || !!process.env.DISABLE_HMR || (process.env.NODE_ENV !== 'production' && !process.env.PM2);
+const PORT = Number(process.env.PORT) || (isAIStudio ? 3000 : 3003);
 
 // Configure JSON parser and URL-encoded parsers
 app.use(express.json({ limit: '50mb' }));
